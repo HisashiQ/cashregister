@@ -1,9 +1,48 @@
 #include <iostream>
 #include <cmath>
 
+void changeAmount(int &a, int &b);
+// int round( int &coins, int &pounds);
+double round( double value);
+
+int main()
+{
+    double price;
+    double payment, a;
+    int pounds, coins, pennyPrice;
+    char y = 'y';
+    
+    while (y == 'y'){
+        std::cout<<"How much is the item?"<<std::endl;
+        std::cin>>price;
+        
+        std::cout<<"How much did the customer pay?"<<std::endl;
+        std::cin>>payment;
+ 
+        double change = payment - price;
+        
+        pennyPrice = price * 100;
+        pounds = change;
+        a = round(payment) * 100;
+        coins = a - pennyPrice;
+        std::cout<<"Return: "<<pounds<<" pound(s)"<<std::endl;
+        
+        changeAmount(coins, pounds);
+        
+        y = 'n';
+        
+        std::cout<<"Would you like to re-run the program? (y/n)"<<std::endl;
+        std::cin>>y;
+    }
+}
+
+
 void changeAmount(int &a, int &b)
 {
+    std::cout<<a<<std::endl;
+    std::cout<<b<<std::endl;
     a -= b*100;
+    std::cout<<a<<std::endl;
     int fifties = 0;
     int twenties = 0;
     int tens = 0;
@@ -35,34 +74,7 @@ void changeAmount(int &a, int &b)
     std::cout<<"Return: "<<ones<<" 1p"<<std::endl;
 }
 
-int main()
+double round( double value)
 {
-    double price;
-    double payment;
-    int pounds, coins;
-    char y = 'y';
-    
-    while (y == 'y'){
-        std::cout<<"How much is the item?"<<std::endl;
-        std::cin>>price;
-        
-        std::cout<<"How much did the customer pay?"<<std::endl;
-        std::cin>>payment;
-        
-        double change = payment - price;
-        
-        
-        pounds = change;
-        
-        coins = change * 100;
-        
-        std::cout<<"Return: "<<pounds<<" pound(s)"<<std::endl;
-        
-        changeAmount(coins, pounds);
-        
-        y = 'n';
-        
-        std::cout<<"Would you like to re-run the program? (y/n)"<<std::endl;
-        std::cin>>y;
-    }
+    return floor( value*100 + 0.5 )/100;
 }
